@@ -53,6 +53,7 @@ def mean_test(x, y):
 
 # Accept / reject
 def acc_rej(N_points, func, arg, x_range, y_rang):
+    
     x_dist = np.zeros(N_points)
     N_try = 0
 

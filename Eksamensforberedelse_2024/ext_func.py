@@ -47,7 +47,26 @@ def poisson_distribution(mu, n):
 
     return poisson_distribution, poisson_sigma
 
+def weighted_mean(vals,sigs):
+    values = np.array(vals)
+    uncertainties = np.array(sigs)
 
+    # Check if lengths match
+    if len(values) != len(uncertainties):
+        raise ValueError("Values and uncertainties must have the same length.")
+    # Check for zero uncertainties to avoid division errors
+    if np.any(uncertainties <= 0):
+        raise ValueError("Uncertainties must be positive and non-zero.")
+
+    # Calculate the weights
+    weights = 1 / (uncertainties ** 2)
+    # Calculate the weighted mean
+    weighted_mean = np.sum(weights * values) / np.sum(weights)
+    # Calculate the uncertainty of the weighted mean
+    mean_uncertainty = np.sqrt(1 / np.sum(weights))
+    
+    
+    return weighted_mean, mean_uncertainty
 
 #Tænker en funktion som tager to datasæt og returnerer z-værdi og p-værdi for om de er ens
 
