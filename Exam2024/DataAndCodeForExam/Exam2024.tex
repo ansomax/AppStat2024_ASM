@@ -1,0 +1,245 @@
+\documentclass[11pt]{article}
+
+\usepackage[latin1]{inputenc}
+\usepackage[danish]{babel}        % Use English headings, date format.
+\usepackage{a4wide}               % A4 (DIN format).
+\usepackage[hidelinks]{hyperref}  % Enable direct links in PDF (e.g. for data sets)
+\usepackage{mathabx}
+
+\textheight=1.04\textheight
+\textwidth=1.10\textwidth
+\hoffset=-0.05\textwidth
+\leftmargin=-0.18\textwidth
+\headsep=0.0pt
+\headheight=0.0pt
+
+\vfuzz2pt   % Don't report over-full v-boxes if over-edge is small
+\hfuzz10pt  % Don't report over-full h-boxes if over-edge is smallish
+
+\newcommand{\half}{\mbox{$\frac{1}{2}$}}
+
+
+\begin{document}
+%\pagestyle{empty}
+
+%----------------------------------------------------------------------------
+\noindent
+University of Copenhagen \hfill
+Niels Bohr Institute, \today \par
+\vspace{-2ex}
+\noindent
+\hrulefill
+
+\vspace{1ex}
+\begin{center}
+{\bf {\Huge Applied Statistics}}\\
+\vspace{1ex}
+{\large Exam in Applied Statistics 2024/25}
+\end{center}
+
+%----------------------------------------------------------------------------
+\vspace{0ex}
+\noindent
+This take-home exam was distributed Thursday the 16th of January 2025 at 08:00. A solution in PDF format must
+be submitted at \texttt{\bf www.eksamen.ku.dk by 20:00 Friday the 17th}, along with all code used to work out
+your solutions (as appendix). Links to data files can also be found on the course webpage and github. Working
+in groups or discussing the problems with others is {\bf NOT} allowed.
+
+\begin{center}
+  Thank you for all your hard work, Malthe, Beatrice, Rashmi, Marcela, Mathias, \& Troels.
+\end{center}
+
+
+%----------------------------------------------------------------------------
+
+\noindent
+\hrulefill\\
+\emph{The knowledge of certain principles easily compensates the lack of knowledge of certain facts.}\\
+  \phantom{foobar} \hfill [Claude Adrien Helvétius, 1759]\\[-2ex]
+
+%----------------------------------------------------------------------------
+\vspace{-2ex}
+\noindent
+\hrulefill
+
+\vspace{4ex}
+\noindent
+{\bf I -- Distributions and probabilities:}
+\vspace*{-1ex}
+\begin{description}
+  \item[1.1] (6 points)
+    Every day, you roll a normal die, and if you get a six, you do roll the die 100 times
+    and do as many pushups as you get sixes. Otherwise you don't do any pushups.
+  \vspace*{-1ex}
+  \begin{itemize}
+    \item What is the distribution of days between doing pushups?
+%    \item What is the distribution of number of pushups on days with pushups?
+    \item What is the mean, median, and standard deviation of number of pushups in 30 days?
+  \end{itemize}
+%
+  \item[1.2] (4 points)
+    The Djoser pyramide in Egypt is North-South aligned to 3 degrees.
+  \vspace*{-1ex}
+  \begin{itemize}
+    \item Estimate the probability that the pyramid is North-South aligned by coincidence.
+  \end{itemize}
+\end{description}
+
+
+
+%----------------------------------------------------------------------------
+
+\vspace{1ex}
+\noindent
+{\bf II -- Error propagation:}
+\vspace*{-1ex}
+\begin{description}
+\item[2.1] (5 points)
+%  Data from: https://onlinelibrary.wiley.com/doi/epdf/10.1111/j.1945-5100.2000.tb01518.x
+  Water on Earth ($\Earth$) has a Deuterium to Hydrogen ratio of $r_{\Earth} = (149 \pm 3) \times 10^{-6}$.
+  The hydrogen of the proto-solar system ($\Sun$) has a ratio of $r_{\Sun} = (25 \pm 5) \times 10^{-6}$, while that of comets ($C$)
+  have been measured to be $r_C = (309 \pm 20) \times 10^{-6}$.
+  \vspace*{-1ex}
+  \begin{itemize}
+  \item From these numbers, what fraction of water on Earth do you estimate come from the original
+    proto-solar system, and what fraction do you attribute to comets?
+  \end{itemize}
+%
+\item[2.2] (8 points)
+  You run a detector for a time interval of $\Delta t = 98.4$s, during which the detector yields $N=1971$ counts.
+  The time interval uncertainty is $\sigma_{\Delta t} = 3.7$s, indepedent of $\Delta t$.
+  \vspace*{-1ex}
+  \begin{itemize}
+    \item What is the rate $r = N/t$ and its uncertainty?
+    \item How long should you measure to get a relative uncertainty on the rate $r$ below 2.5\%?
+  \end{itemize}
+%
+\item[2.3] (14 points)  
+  The file \href{http://www.nbi.dk/~petersen/data\_PylonPositions.csv}{\bf www.nbi.dk/$\sim$petersen/data\_PylonPositions.csv}
+  contains position measurements (both with and without uncertainties) of four pylons for a bridge.
+  \vspace*{-1ex}
+  \begin{itemize}
+    \item Using measurements without uncertainty, determine the four pylon positions.
+    \item Using measurements with uncertainty, determine the four pylon positions.
+    \item Combine the two measurements. Do they match each other?
+    \item Test if the four measured pylon positions are equidistant.
+    \item The pylon distance should be 40.83m with a tolerance (i.e.\ maximally allowed deviation) of 1.05m.
+      Do the pylon positions live up to this requirement?   % at the 95\% confidence level?
+  \end{itemize}
+\end{description}
+
+
+%----------------------------------------------------------------------------
+
+\vspace{1ex}
+\noindent
+{\bf III -- Simulation / Monte Carlo:}
+\vspace*{-1ex}
+\begin{description}
+\item[3.1] (8 points)
+  Circles $A$ and $B$ are centered at (0,0) and (3,7) and have radii of 6 and 4, respectively.
+  \vspace*{-1ex}
+  \begin{itemize}
+    \item What fraction of $A$ overlaps with $B$? And conversely, what fraction of $B$ overlaps with $A$?
+    \item If the circles were 4D ``hyperballs'' centered at (0,0,0,0) and (3,7,-1,2), respectively, and with the same radii,
+      what would the answers then be?
+  \end{itemize}
+%
+\item[3.2] (15 points)
+  You want to simulate the radial material distribution $m(r)$ from a uniform explosion.\\
+  \vspace*{-4ex}
+  \begin{itemize}
+    \item Generate 50000 $x$, $y$, and $z$ values in the range $[-1,1]$ and plot the spherical
+      coordinate $r$.
+    \item Selecting only points with $z > 0$ and $r < 1$, what distributions in $\theta$ and $\phi$  do you obtain?
+    \item How would you produce random velocities $v$ according to $f(v) = (v/v_0)^2 \exp(-v/v_0)$? 
+    \item Given $v_0 = 100~$m/s and that the radial distance of material $r$ as a function of velocity is
+      $r(v) = \sin(\theta) v^2/g$ ($g = 9.82 \mbox{m/s}^2$), simulate 10000 values of $\theta$ and $v$.
+      Combine these to obtain values of $r$, and plot the resulting distribution $m(r)$.
+  \end{itemize}
+\end{description}
+
+
+%----------------------------------------------------------------------------
+
+\vspace{1ex}
+\noindent
+{\bf IV -- Statistical tests:}
+\vspace*{-1ex}
+\begin{description}
+\item[4.1] (12 points)
+  You get a permanently closed box with 20 normal (i.e.\ six-sided) dices in. One of the dice is potentially fake,
+  with all the sides having the same (unknown) value. You can shake the box and see the resulting 20 dice roll
+  as many times as you like.
+  \vspace*{-1ex}
+  \begin{itemize}
+    \item Simulate 100 box rolls and plot the die frequencies, both with and without a fake die in.
+    \item For both of your simulated datasets, test if there is a fake die or not.
+    \item How many rolls would you require before you would argue, that you could tell the difference?
+  \end{itemize}
+\end{description}
+
+
+%----------------------------------------------------------------------------
+
+\vspace{1ex}
+\noindent
+{\bf V -- Fitting data:}
+\vspace*{-1ex}
+\begin{description}
+\item[5.1] (14 points)
+  The file \href{http://www.nbi.dk/~petersen/data\_InconstantBackground.csv}{\bf www.nbi.dk/$\sim$petersen/data\_InconstantBackground.csv}
+  contains molecular interspacing measurements $d$ (in nm) from a scattering experiment.
+  \vspace*{-1ex}
+  \begin{itemize}
+    \item Plot the data and test to what extend the background in the range [8,10] is uniform.
+    \item Fit the three Gaussian peaks at around $d$ = 0.9, 3.4, and 5.9 nm, including local background.
+    \item Test if the peaks have the same intensity, i.e.\ number of measurements in them.
+    \item Try to fit the entire spectrum or parts of it best possible and comment on your results.
+  \end{itemize}
+%
+% https://www.astro.umd.edu/~peel/CPSP118D_101/content/Nature_Pyramids_Article.pdf
+% NOTE: The sign difference in alignment due to assumed different stars/use for 5. and 7. has been dropped!!!
+\item[5.2] (14 points)
+  The table below lists the North-South alignment of Egyptian pyramids (in arc minutes).
+  \vspace*{-6ex}
+  \begin{center}
+  \begin{small}
+  \begin{tabular}{lcccccccc}
+    \hline
+    Pyramid        &1.Meidum       &2.Bent         &3.Red         &4.Khufu       &5.Khafre      &6.Menk.\    &7.Sahure     &8.Nefer.\\
+    Align.\ year   &2600 BC        &2583 BC        &2572 BC       &2554 BC       &2522 BC       &2489 BC     &2446 BC      &2433 BC \\
+    East Align.    &-$20.6\!\pm\!1.0$  &-$17.3\!\pm\!0.2$  &-$8.7\!\pm\!0.2$  &-$3.4\!\pm\!0.2$  &$6.0\!\pm\!0.2$  &$12.4\!\pm\!1.0$  &$23\!\pm\!10$   &$30\!\pm\!10$\\
+    West Align.\   &-$18.1\!\pm\!1.0$  &-$11.8\!\pm\!0.2$  &--                &-$2.8\!\pm\!0.2$  &$6.0\!\pm\!0.2$  &$14.1\!\pm\!1.8$  &--              &--\\
+    \hline
+  \end{tabular}
+  \end{small}
+  \end{center}
+  \vspace*{-2ex}
+  \begin{itemize}
+    \item Test to what extend the East (E) and West (W) alignment values agree.
+    \item Combine East and West values. Include systematic uncertainties to ensure agreement.
+    \item If the alignments were done using circumpolar stars, these drift with Earth's precession.
+      Test if the alignment of the pyramids shifts linearly as a function of time.
+    \item The astronomically predicted shift as a function of time is 2467 BC + 0.274 arc min./year.
+      Does the slope of the linear fit match the predicted value?
+    \item What alignment date of Khufu (historically $2554\pm100$ BC) is the astronomical prediction?
+  \end{itemize}
+\end{description}
+
+\vspace*{-2ex}
+\noindent
+\hrulefill\\[-4ex]
+\begin{center}
+\emph{The outcome of a repeated process follows not chance but statistics.}\\
+\end{center}
+
+%----------------------------------------------------------------------------
+
+\end{document}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 
+
