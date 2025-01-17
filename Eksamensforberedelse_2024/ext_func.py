@@ -27,8 +27,6 @@ def histogram(data, bin_count, hist_range):
 
     return x, y, sy
 
-#Tænker en fitting funktion for: binomial, poisson, gauss, som giver chi2, p-værdi, og plotter fit og data
-
 def binomial_distribution(x, n, p, N_exp):
     ''' Binomial distribution. Takes n and p as input and returns the binomial distribution'''
     log_binomial_coefficient = gammaln(n + 1) - (gammaln(x + 1) + gammaln(n - x + 1))
